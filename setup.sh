@@ -6,6 +6,12 @@ if [ -f ~/.zshrc ]; then
     echo "Existing .zshrc backed up as .zshrc.backup"
 fi
 
+# Backup and remove existing Oh My ZSH! installation
+if [ -d ~/.oh-my-zsh ]; then
+    mv ~/.oh-my-zsh ~/.oh-my-zsh.backup
+    echo "Existing Oh My Zsh installation backed up as .oh-my-zsh.backup"
+fi
+
 # Install Oh My ZSH!
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
