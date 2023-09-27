@@ -1,23 +1,32 @@
+# A. Install Meslo Nerd Font for Powerlevel10k
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts && curl -fLo "MesloLGS NF Regular.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+cd ~/.local/share/fonts && curl -fLo "MesloLGS NF Bold.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+cd ~/.local/share/fonts && curl -fLo "MesloLGS NF Italic.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+cd ~/.local/share/fonts && curl -fLo "MesloLGS NF Bold Italic.ttf" https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+fc-cache -f -v
+
+# B. Update and Install Zsh
 sudo apt update && sudo apt install -y zsh
 
-# Install Oh My Zsh
+# C. Install Oh My Zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Install Powerlevel10k theme
+# D. Install Powerlevel10k theme
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# Install zsh-autosuggestions for autocomplete
+# E. Install zsh-autosuggestions for autocomplete
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+# F. Enable zsh-autosuggestions
 echo 'source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
 
-# Set Powerlevel10k and zsh-autosuggestions as the default theme and plugin in .zshrc
+# G. Set Powerlevel10k and zsh-autosuggestions as the default theme and plugin in .zshrc
 sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="powerlevel10k/powerlevel10k"/' ~/.zshrc
-
 echo 'plugins=(git zsh-autosuggestions)' >> ~/.zshrc
 
-# Change default shell to zsh
+# H. Change default shell to zsh
 chsh -s $(which zsh)
 
-# Source .zshrc to apply changes
+# I. Source .zshrc to apply changes
 source ~/.zshrc
