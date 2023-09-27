@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Backup existing .zshrc
+if [ -f ~/.zshrc ]; then
+    mv ~/.zshrc ~/.zshrc.backup
+    echo "Existing .zshrc backed up as .zshrc.backup"
+fi
+
 # Install Oh My ZSH!
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -11,13 +17,8 @@ cd ..
 rm -rf fonts
 
 # Set ZSH theme to agnoster and hide terminal context
-if ! grep -q "ZSH_THEME=\"agnoster\"" ~/.zshrc; then
-    echo "ZSH_THEME=\"agnoster\"" >> ~/.zshrc
-fi
-
-if ! grep -q "prompt_context(){}" ~/.zshrc; then
-    echo "prompt_context(){}" >> ~/.zshrc
-fi
+echo "ZSH_THEME=\"agnoster\"" >> ~/.zshrc
+echo "prompt_context(){}" >> ~/.zshrc
 
 # Set Visual Studio Code configurations for ZSH (Optional)
 # echo "\"terminal.integrated.fontFamily\": \"Source Code Pro for Powerline\"," >> ~/.vscode/settings.json
