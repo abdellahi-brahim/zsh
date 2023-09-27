@@ -13,7 +13,9 @@ fc-cache -f -v
 sudo apt update && sudo apt install -y zsh
 
 # D. Install Oh My Zsh
-[ ! -d "$HOME/.oh-my-zsh" ] && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" --unattended
+fi
 
 # E. Install Powerlevel10k theme
 [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ] && git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -25,7 +27,7 @@ sudo apt update && sudo apt install -y zsh
 grep -q 'zsh-autosuggestions.zsh' ~/.zshrc || echo 'source $ZSH_CUSTOM/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
 
 # H. Set Powerlevel10k and zsh-autosuggestions as the default theme and plugin in .zshrc
-grep -q 'ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc || sed -i 's/^ZSH_THEME=".*"/ZSH_THEME="powerlevel10k/powerlevel10k"/' ~/.zshrc
+grep -q 'ZSH_THEME="powerlevel10k/powerlevel10k"' ~/.zshrc || sed -i.bak 's/^ZSH_THEME=".*"/ZSH_THEME="powerlevel10k/powerlevel10k"/' ~/.zshrc
 grep -q 'plugins=(git zsh-autosuggestions)' ~/.zshrc || echo 'plugins=(git zsh-autosuggestions)' >> ~/.zshrc
 
 # I. Change default shell to zsh
